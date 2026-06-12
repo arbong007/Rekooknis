@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  nik       String   @unique
+  nama      String
+  password  String
+  role      Role     @default(ANGGOTA)
+  
+  // Relasi
+  simpanan  Simpanan[]
+  pinjaman  Pinjaman[]
+  transaksi Transaksi[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  ANGGOTA
+}
+
+model Simpanan {
+  id          String   @id @default(uuid())
+  userId      String
+  jenis       JenisSimpanan
+  nominal     Float
+  keterangan  String?
+  tanggal     DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum JenisSimpanan {
+  POKOK
+  WAJIB
+  SUKARELA
+  BERJANGKA
+}
+
+model Pinjaman {
+  id          String   @id @default(uuid())
+  userId      String
+  nomor       String   @unique
+  nominal     Float
+  tenorBulan  Int
+  bungaPersen Float
+  sisaSaldo   Float
+  status      StatusPinjaman @default(AKTIF)
+  tanggal     DateTime @default(now())
+
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  angsuran    Angsuran[]
+}
+
+enum StatusPinjaman {
+  AKTIF
+  LUNAS
+  MACET
+}
+
+model Angsuran {
+  id          String   @id @default(uuid())
+  pinjamanId  String
+  angsuranKe  Int
+  jatuhTempo  DateTime
+  nominal     Float
+  status      StatusAngsuran @default(BELUM_LUNAS)
+  tglBayar    DateTime?
+
+  pinjaman    Pinjaman @relation(fields: [pinjamanId], references: [id], onDelete: Cascade)
+}
+
+enum StatusAngsuran {
+  LUNAS
+  BELUM_LUNAS
+}
+
+model Produk {
+  id          String   @id @default(uuid())
+  kode        String   @unique
+  nama        String
+  kategori    String
+  harga       Float
+  stok        Int
+  gambar      String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Transaksi {
+  id          String   @id @default(uuid())
+  userId      String
+  tipe        TipeTransaksi
+  kategori    String
+  nominal     Float
+  keterangan  String?
+  tanggal     DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+}
+
+enum TipeTransaksi {
+  MASUK
+  KELUAR
+}
