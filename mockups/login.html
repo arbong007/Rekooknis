@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SIMKOP-Link</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-900: #1B5E20; --green-800: #2E7D32; --green-700: #388E3C;
+            --green-600: #43A047; --green-500: #4CAF50; --green-100: #E8F5E9;
+            --gold-500: #F9A825; --gold-400: #FBC02D;
+            --text-primary: #1a1a2e; --text-secondary: #555;
+            --bg-main: #f7faf7;
+            --radius-md: 12px; --radius-lg: 20px;
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: var(--bg-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, var(--green-800), var(--green-600));
+            padding: 40px 30px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .login-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0; width: 100%;
+            height: 20px;
+            background: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .logo-wrap {
+            width: 70px; height: 70px;
+            background: white;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 10px;
+        }
+        .logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+
+        .login-header h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        .login-header p { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
+
+        .login-body { padding: 10px 30px 40px; }
+
+        .role-selector {
+            display: flex;
+            background: var(--green-100);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            margin-bottom: 25px;
+        }
+        .role-btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--green-800);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .role-btn.active { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block; font-size: 0.85rem; font-weight: 600;
+            color: var(--text-secondary); margin-bottom: 8px;
+        }
+        .input-wrap {
+            position: relative;
+            display: flex; align-items: center;
+        }
+        .input-wrap i {
+            position: absolute; left: 15px;
+            color: #999; font-size: 1rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 42px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            outline: none; transition: var(--transition);
+        }
+        .form-control:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(76,175,80,0.1); }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--gold-500);
+            color: var(--green-900);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-submit:hover { background: var(--gold-400); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(249,168,37,0.3); }
+
+        .alert {
+            padding: 12px; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 20px; display: none;
+        }
+        .alert-error { background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; }
+
+        .back-link {
+            display: block; text-align: center;
+            margin-top: 20px; font-size: 0.85rem;
+            color: var(--text-secondary); text-decoration: none;
+        }
+        .back-link:hover { color: var(--green-600); }
+        .back-link i { margin-right: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo-wrap"><img src="../koperasi logo.png" alt="Logo"></div>
+            <h2>SIMKOP-Link</h2>
+            <p>Sistem Informasi Koperasi Digital</p>
+        </div>
+        <div class="login-body">
+            
+            <div class="role-selector">
+                <div class="role-btn active" id="btnRoleAnggota" onclick="setRole('anggota')">Anggota</div>
+                <div class="role-btn" id="btnRoleAdmin" onclick="setRole('admin')">Pengurus / Admin</div>
+            </div>
+
+            <div class="alert alert-error" id="loginAlert"></div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" class="form-control" placeholder="Masukkan username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" class="form-control" placeholder="Masukkan password" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">
+                    Masuk ke Dashboard <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <a href="SiKoDes.html" class="back-link"><i class="fas fa-home"></i> Kembali ke Beranda Katalog</a>
+        </div>
+    </div>
+
+    <script src="app-data.js"></script>
+    <script>
+        let currentRole = 'anggota';
+
+        // Check URL parameters for default role
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('role') === 'admin') {
+            setRole('admin');
+        }
+
+        function setRole(role) {
+            currentRole = role;
+            document.getElementById('btnRoleAnggota').classList.remove('active');
+            document.getElementById('btnRoleAdmin').classList.remove('active');
+            
+            if(role === 'anggota') {
+                document.getElementById('btnRoleAnggota').classList.add('active');
+                document.getElementById('username').placeholder = "Username (contoh: sukarman)";
+            } else {
+                document.getElementById('btnRoleAdmin').classList.add('active');
+                document.getElementById('username').placeholder = "Username (contoh: admin)";
+            }
+            document.getElementById('loginAlert').style.display = 'none';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            const alertBox = document.getElementById('loginAlert');
+            
+            const isAdmin = currentRole === 'admin';
+            const result = AppData.doLogin(u, p, isAdmin);
+            
+            if(result.ok) {
+                // Redirect based on role
+                if (result.session.tipe === 'admin') {
+                    window.location.href = 'dashboard-admin.html';
+                } else {
+                    window.location.href = 'dashboard-anggota.html';
+                }
+            } else {
+                alertBox.textContent = result.msg;
+                alertBox.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

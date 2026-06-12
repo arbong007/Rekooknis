@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMKOP-Link | Koperasi Agro Mulyo Lestari — Katalog Digital</title>
+    <meta name="description" content="Sistem Informasi Manajemen Koperasi Digital - Koperasi Agro Mulyo Lestari. Lihat katalog produk agroforestri, bibit unggul, dan hasil tani berkualitas.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           SIMKOP-Link — PUBLIC E-CATALOG
+           Premium Agroforestry Design System
+           ============================================ */
+
+        :root {
+            --green-900: #1B5E20;
+            --green-800: #2E7D32;
+            --green-700: #388E3C;
+            --green-600: #43A047;
+            --green-500: #4CAF50;
+            --green-400: #66BB6A;
+            --green-100: #E8F5E9;
+            --green-50: #F1F8E9;
+            --gold-500: #F9A825;
+            --gold-400: #FBC02D;
+            --gold-300: #FDD835;
+            --earth-800: #3E2723;
+            --earth-600: #5D4037;
+            --wa-green: #25D366;
+            --wa-dark: #128C7E;
+            --text-primary: #1a1a2e;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --bg-main: #f7faf7;
+            --bg-white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+            --shadow-glow: 0 0 30px rgba(76,175,80,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* === ANNOUNCEMENTS BAR === */
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--green-800), var(--green-600));
+            color: white;
+            text-align: center;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .announcement-bar i { margin-right: 6px; }
+
+        /* === NAVBAR === */
+        header {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--green-800);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+        .logo-icon {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(76,175,80,0.3);
+        }
+        .logo-icon img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .nav-links li a:hover {
+            background: var(--green-100);
+            color: var(--green-800);
+        }
+
+        .btn-nav-login {
+            background: linear-gradient(135deg, var(--green-800), var(--green-600)) !important;
+            color: white !important;
+            padding: 9px 22px !important;
+            border-radius: var(--radius-xl) !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 10px rgba(46,125,50,0.3);
+        }
+        .btn-nav-login:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(46,125,50,0.4) !important;
+            background: linear-gradient(135deg, var(--green-700), var(--green-500)) !important;
+        }
+        .btn-nav-member {
+            border: 2px solid var(--green-600) !important;
+            color: var(--green-700) !important;
+            padding: 7px 20px !important;
+            border-radius: var(--radius-xl) !important;
+            font-weight: 600 !important;
+            background: transparent !important;
+        }
+        .btn-nav-member:hover {
+            background: var(--green-100) !important;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1100;
+            gap: 5px;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2.5px;
+            background: var(--green-800); border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* === HERO === */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #1a3a1a 0%, #2E7D32 50%, #1B5E20 100%);
+            color: white;
+            padding: 100px 5% 80px;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(249,168,37,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(76,175,80,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroGlow 6s ease-in-out infinite reverse;
+        }
+        @keyframes heroGlow {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .hero-text { flex: 1; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .hero-badge i { color: var(--gold-500); }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .hero h1 span { color: var(--gold-400); }
+        .hero-desc {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 520px;
+            margin-bottom: 35px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-hero-primary {
+            background: var(--gold-500);
+            color: var(--earth-800);
+            box-shadow: 0 4px 15px rgba(249,168,37,0.4);
+        }
+        .btn-hero-primary:hover {
+            background: var(--gold-400);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(249,168,37,0.5);
+        }
+        .btn-hero-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-hero-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .hero-visual {
+            flex: 0.8;
+            position: relative;
+        }
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .hero-stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 24px 20px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .hero-stat-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+        .hero-stat-card i {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .hero-stat-card .stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .hero-stat-card .stat-label {
+            font-size: 0.78rem;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+
+        /* === FEATURES === */
+        .features {
+            padding: 80px 5%;
+            max-width: 1280px;
+            margin: auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-tag {
+            display: inline-block;
+            background: var(--green-100);
+            color: var(--green-800);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--green-600), var(--gold-500));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .feature-card:hover::before { transform: scaleX(1); }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-icon {
+            width: 56px; height: 56px;
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+        .feature-icon.green { background: var(--green-100); color: var(--green-700); }
+        .feature-icon.gold { background: #FFF8E1; color: #F57F17; }
+        .feature-icon.blue { background: #E3F2FD; color: #1565C0; }
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* === E-CATALOG === */
+        .catalog {
+            padding: 80px 5%;
+            max-width: 1280px;
+            margin: auto;
+        }
+        .catalog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 22px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: var(--radius-xl);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--green-600);
+            color: var(--green-700);
+            background: var(--green-100);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-img-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+        .product-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img { transform: scale(1.08); }
+        .product-category-badge {
+            position: absolute;
+            top: 14px; left: 14px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--green-800);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .product-info { padding: 24px; }
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .product-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--green-800);
+        }
+        .product-price small {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .stock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .stock-badge.available { background: var(--green-100); color: var(--green-800); }
+        .stock-badge.low { background: #FFF3E0; color: #E65100; }
+        .stock-badge.empty { background: #FFEBEE; color: #C62828; }
+
+        .btn-wa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-wa:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+        }
+
+        /* === ABOUT KOPERASI === */
+        .about {
+            padding: 80px 5%;
+            background: white;
+        }
+        .about-container {
+            max-width: 1280px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+        .about-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .about-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .about-list li i {
+            width: 28px; height: 28px;
+            background: var(--green-100);
+            color: var(--green-700);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .stat-card {
+            background: var(--bg-main);
+            padding: 28px 20px;
+            text-align: center;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--green-600);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: block;
+        }
+        .stat-card .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* === CTA SECTION === */
+        .cta-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #1B5E20, #2E7D32, #388E3C);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(249,168,37,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cta-content {
+            max-width: 700px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+        .cta-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .cta-content p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 30px;
+        }
+        .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 700; font-size: 0.95rem;
+            text-decoration: none; transition: var(--transition);
+            border: none; cursor: pointer;
+        }
+        .btn-cta-primary {
+            background: var(--gold-500); color: var(--earth-800);
+        }
+        .btn-cta-primary:hover { background: var(--gold-400); transform: translateY(-2px); }
+        .btn-cta-outline {
+            background: transparent; color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-cta-outline:hover { background: rgba(255,255,255,0.1); }
+
+        /* === FOOTER === */
+        footer {
+            background: #0d2b0d;
+            color: rgba(255,255,255,0.8);
+            padding: 60px 5% 30px;
+        }
+        .footer-content {
+            max-width: 1280px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            opacity: 0.7;
+        }
+        .footer-col h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+            color: white;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover { color: var(--gold-400); }
+        .footer-col .contact-item {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.88rem;
+        }
+        .footer-col .contact-item i {
+            color: var(--green-500);
+            width: 16px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-desc { margin: 0 auto 30px; }
+            .hero-buttons { justify-content: center; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-container { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .announcement-bar { font-size: 0.72rem; }
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 65px; right: 5%;
+                background: white;
+                flex-direction: column;
+                width: 240px;
+                box-shadow: var(--shadow-lg);
+                border-radius: var(--radius-md);
+                padding: 16px;
+                z-index: 1001;
+                border: 1px solid rgba(0,0,0,0.06);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li a { display: block; padding: 10px 16px; }
+            .hero { padding: 60px 5% 50px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .product-grid { grid-template-columns: 1fr; }
+            .about-cards { grid-template-columns: 1fr 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.7rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.7rem; }
+            .hero-stat-card { padding: 16px 12px; }
+            .hero-stat-card .stat-num { font-size: 1.4rem; }
+            .about-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <i class="fas fa-bullhorn"></i>
+        Selamat datang di SIMKOP-Link — Sistem Informasi Manajemen Koperasi Digital Agro Mulyo Lestari
+    </div>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <div class="logo-icon"><img src="../koperasi logo.png" alt="Logo Koperasi"></div>
+                SIMKOP-Link
+            </a>
+            <div class="hamburger" id="hamburger-menu" aria-label="Toggle navigation" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="SiKoDes.html">Beranda</a></li>
+                <li><a href="#produk">E-Catalog</a></li>
+                <li><a href="#tentang">Info Koperasi</a></li>
+                <li><a href="login.html?role=anggota" class="btn-nav-member"><i class="fas fa-user"></i> Anggota</a></li>
+                <li><a href="login.html?role=admin" class="btn-nav-login"><i class="fas fa-shield-halved"></i> Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i class="fas fa-award"></i>
+                    Koperasi Desa Binaan Terbaik 2025
+                </div>
+                <h1>Koperasi <span>Agro Mulyo</span> Lestari</h1>
+                <p class="hero-desc">Membangun kemandirian ekonomi desa melalui tata kelola koperasi yang transparan, modern, dan terintegrasi digital berbasis agroforestri.</p>
+                <div class="hero-buttons">
+                    <a href="#produk" class="btn-hero btn-hero-primary">
+                        <i class="fas fa-shopping-bag"></i> Lihat Produk
+                    </a>
+                    <a href="#tentang" class="btn-hero btn-hero-outline">
+                        <i class="fas fa-info-circle"></i> Tentang Kami
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-stats" id="hero-stats">
+                    <div class="hero-stat-card">
+                        <i class="fas fa-users" style="color: var(--gold-400);"></i>
+                        <span class="stat-num" id="stat-anggota">32</span>
+                        <span class="stat-label">Anggota Aktif</span>
+                    </div>
+                    <div class="hero-stat-card">
+                        <i class="fas fa-box-open" style="color: #81C784;"></i>
+                        <span class="stat-num" id="stat-produk">5</span>
+                        <span class="stat-label">Jenis Produk</span>
+                    </div>
+                    <div class="hero-stat-card">
+                        <i class="fas fa-chart-line" style="color: #64B5F6;"></i>
+                        <span class="stat-num">2-3</span>
+                        <span class="stat-label">Ton / Bulan</span>
+                    </div>
+                    <div class="hero-stat-card">
+                        <i class="fas fa-seedling" style="color: #AED581;"></i>
+                        <span class="stat-num">15</span>
+                        <span class="stat-label">Hektar Lahan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Layanan -->
+    <section class="features">
+        <div class="section-header animate-in">
+            <span class="section-tag">Layanan Kami</span>
+            <h2 class="section-title">Platform Koperasi Digital Terpadu</h2>
+            <p class="section-subtitle">Kemudahan akses informasi dan pengelolaan koperasi dalam satu sistem terintegrasi.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-in">
+                <div class="feature-icon green"><i class="fas fa-store"></i></div>
+                <h3>E-Catalog Produk</h3>
+                <p>Lihat katalog digital produk agroforestri lengkap dengan harga, stok realtime, dan pemesanan langsung via WhatsApp.</p>
+            </div>
+            <div class="feature-card animate-in">
+                <div class="feature-icon gold"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Simpanan & Pinjaman</h3>
+                <p>Anggota dapat memantau simpanan pokok, wajib, sukarela serta sisa angsuran pinjaman secara transparan.</p>
+            </div>
+            <div class="feature-card animate-in">
+                <div class="feature-icon blue"><i class="fas fa-chart-pie"></i></div>
+                <h3>Laporan Otomatis</h3>
+                <p>Rekap transaksi harian otomatis menjadi laporan bulanan. Transparansi keuangan untuk semua anggota.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Catalog Products -->
+    <section class="catalog" id="produk">
+        <div class="section-header animate-in">
+            <span class="section-tag">E-Catalog</span>
+            <h2 class="section-title">Produk Agroforestri Unggulan</h2>
+            <p class="section-subtitle">Hasil tani berkualitas dari anggota Koperasi Agro Mulyo Lestari, siap dipesan langsung.</p>
+        </div>
+        <div class="catalog-filters animate-in">
+            <button class="filter-btn active" onclick="filterProducts('all', event)">Semua</button>
+            <button class="filter-btn" onclick="filterProducts('Hasil Tani', event)">Hasil Tani</button>
+            <button class="filter-btn" onclick="filterProducts('Bibit', event)">Bibit</button>
+            <button class="filter-btn" onclick="filterProducts('Sarana Tani', event)">Sarana Tani</button>
+            <button class="filter-btn" onclick="filterProducts('Produk Olahan', event)">Produk Olahan</button>
+        </div>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be rendered by JS -->
+        </div>
+    </section>
+
+    <!-- About Koperasi -->
+    <section class="about" id="tentang">
+        <div class="about-container">
+            <div class="about-text animate-in">
+                <span class="section-tag">Tentang Kami</span>
+                <h2>Layanan Digital Terintegrasi untuk Kemajuan Desa</h2>
+                <p>SIMKOP-Link hadir untuk mempermudah anggota Koperasi Agro Mulyo Lestari dalam memantau perkembangan usaha. Kini, transparansi ada di genggaman Anda.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-check"></i> Cek Simpanan Pokok, Wajib & Sukarela real-time</li>
+                    <li><i class="fas fa-check"></i> Pantau Sisa Angsuran Pinjaman secara detail</li>
+                    <li><i class="fas fa-check"></i> Laporan Usaha & Keuangan Transparan</li>
+                    <li><i class="fas fa-check"></i> E-Catalog Produk dengan Stok Real-Time</li>
+                    <li><i class="fas fa-check"></i> Pemesanan Mudah via WhatsApp</li>
+                </ul>
+                <a href="login.html?role=anggota" class="btn-hero btn-hero-primary" style="display: inline-flex;">
+                    <i class="fas fa-sign-in-alt"></i> Masuk Dashboard Anggota
+                </a>
+            </div>
+            <div class="about-cards animate-in">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <span class="stat-number" id="about-anggota">32</span>
+                    <span class="stat-label">Anggota Aktif</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span class="stat-number" id="about-simpanan">Rp 5.2 Jt</span>
+                    <span class="stat-label">Total Simpanan</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-leaf"></i>
+                    <span class="stat-number">2-3 Ton</span>
+                    <span class="stat-label">Kapasitas/Bulan</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-handshake"></i>
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Mitra Distribusi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content animate-in">
+            <h2>Bergabung Bersama Kami</h2>
+            <p>Jadilah bagian dari koperasi yang transparan dan modern. Akses layanan digital untuk kemajuan bersama.</p>
+            <div class="cta-buttons">
+                <a href="login.html?role=anggota" class="btn-cta btn-cta-primary">
+                    <i class="fas fa-user-plus"></i> Login Anggota
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20pengurus%20Koperasi%20Agro%20Mulyo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20anggota." class="btn-cta btn-cta-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo" style="margin-bottom: 16px;">
+                    <div class="logo-icon"><img src="../koperasi logo.png" alt="Logo Koperasi"></div>
+                    SIMKOP-Link
+                </a>
+                <p>Sistem Informasi Manajemen Koperasi Digital. Membangun kemandirian ekonomi desa melalui teknologi.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="SiKoDes.html">Beranda</a></li>
+                    <li><a href="#produk">E-Catalog</a></li>
+                    <li><a href="#tentang">Info Koperasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <ul>
+                    <li><a href="login.html?role=anggota">Login Anggota</a></li>
+                    <li><a href="login.html?role=admin">Login Admin</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak</h4>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Dusun 5, Desa Girimulyo, Kab. Lampung Timur</div>
+                <div class="contact-item"><i class="fas fa-phone"></i> +62 812 3456 7890</div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> info@agromulyolestari.com</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 SIMKOP-Link — Koperasi Agro Mulyo Lestari. Dikembangkan melalui Program Pemberdayaan Desa Binaan Berdampak.
+        </div>
+    </footer>
+
+    <script src="app-data.js"></script>
+    <script>
+    // === Hamburger Menu ===
+    const hamburger = document.getElementById('hamburger-menu');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+    hamburger.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') navLinks.classList.toggle('active');
+    });
+
+    // === Render Products from Data ===
+    let currentFilter = 'all';
+
+    function renderProducts(filter) {
+        const stok = AppData.getStok();
+        const grid = document.getElementById('product-grid');
+        const waNumber = '6281234567890';
+
+        const filtered = filter === 'all' ? stok : stok.filter(s => s.kategori === filter);
+
+        if (filtered.length === 0) {
+            grid.innerHTML = '<div style="text-align:center; padding:40px; color:var(--text-muted); grid-column:1/-1;"><i class="fas fa-box-open" style="font-size:2rem;margin-bottom:10px;display:block;"></i>Belum ada produk dalam kategori ini.</div>';
+            return;
+        }
+
+        grid.innerHTML = filtered.map(item => {
+            let badgeClass = 'available';
+            let badgeText = `<i class="fas fa-check-circle"></i> Stok: ${item.stok} ${item.satuan}`;
+            if (item.stok <= 0) { badgeClass = 'empty'; badgeText = `<i class="fas fa-times-circle"></i> Habis`; }
+            else if (item.stok < 100) { badgeClass = 'low'; badgeText = `<i class="fas fa-exclamation-circle"></i> Stok: ${item.stok} ${item.satuan}`; }
+
+            return `
+            <div class="product-card animate-in visible" data-category="${item.kategori}">
+                <div class="product-img-wrap">
+                    <img src="${item.gambar}" alt="${item.nama}" class="product-img" loading="lazy">
+                    <span class="product-category-badge">${item.kategori}</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${item.nama}</h3>
+                    <p class="product-desc">${item.deskripsi}</p>
+                    <div class="product-meta">
+                        <span class="product-price">${AppData.formatRupiah(item.harga)} <small>/${item.satuan}</small></span>
+                        <span class="stock-badge ${badgeClass}">${badgeText}</span>
+                    </div>
+                    <a href="https://wa.me/${waNumber}?text=${encodeURIComponent('Halo pengurus Koperasi Agro Mulyo, saya tertarik dengan produk ' + item.nama + '. Apakah masih tersedia?')}" class="btn-wa" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                    </a>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    function filterProducts(category, event) {
+        currentFilter = category;
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        if (event && event.target) event.target.classList.add('active');
+        renderProducts(category);
+    }
+
+    // === Update Stats ===
+    function updateStats() {
+        const anggota = AppData.getAnggota();
+        const stok = AppData.getStok();
+        const simpanan = AppData.getSimpanan();
+
+        const totalAnggota = anggota.length || 32;
+        const totalProduk = stok.length || 5;
+
+        document.getElementById('stat-anggota').textContent = totalAnggota;
+        document.getElementById('stat-produk').textContent = totalProduk;
+        document.getElementById('about-anggota').textContent = totalAnggota;
+
+        const totalSimpanan = simpanan.reduce((a, b) => a + (b.jumlah || 0), 0);
+        if (totalSimpanan > 0) {
+            document.getElementById('about-simpanan').textContent = AppData.formatRupiah(totalSimpanan);
+        }
+    }
+
+    // === Scroll Animations ===
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), index * 100);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+    // Init
+    renderProducts('all');
+    updateStats();
+    </script>
+
+</body>
+</html>
